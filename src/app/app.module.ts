@@ -17,6 +17,8 @@ import { AuthGuard } from './auth-guard.service';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { canDeactivateGuard } from './servers/edit-server/can-deactivated-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
     ProductsComponent,
     ProductComponent,
     ProductDetailsComponent,
+    ErrorPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
-  providers: [ServersService, AuthService, AuthGuard],
+  providers: [ServersService, AuthService, AuthGuard, canDeactivateGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

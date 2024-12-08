@@ -11,6 +11,8 @@ import { AuthGuard } from './auth-guard.service';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { canDeactivateGuard } from './servers/edit-server/can-deactivated-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,11 +24,16 @@ const routes: Routes = [
 
   {
     path: 'servers',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     component: ServersComponent,
     children: [
       { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent },
+      {
+        path: ':id/edit',
+        component: EditServerComponent,
+        canDeactivate: [canDeactivateGuard],
+      },
     ],
   },
   {
@@ -37,7 +44,12 @@ const routes: Routes = [
       { path: ':id', component: ProductDetailsComponent },
     ],
   },
-  { path: 'not-found', component: PageNotFoundComponent },
+  // { path: 'not-found', component: PageNotFoundComponent },
+  {
+    path: 'not-found',
+    component: ErrorPageComponent,
+    data: { message: 'Page not found!' },
+  },
   { path: '**', redirectTo: '/not-found' },
 ];
 
