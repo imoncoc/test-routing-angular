@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-6">
+    <div *ngFor="let product of products" class="list-group">
+      <p
+        class="list-group-item icon-link-hover"
+        [routerLink]="['/products', product.id]"
+        style="cursor: pointer"
+      >
+        {{ product.name }}
+      </p>
+      <!-- <p
+        class="list-group-item icon-link-hover"
+        (click)="getProductDetails()"
+        style="cursor: pointer"
+      >
+        {{ product.name }}
+      </p> -->
+    </div>
+  </div>
+
+  <div class="col-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>

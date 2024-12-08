@@ -8,6 +8,9 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { ServerComponent } from './servers/server/server.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth-guard.service';
+import { ProductsComponent } from './products/products.component';
+import { ProductComponent } from './products/product/product.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +27,14 @@ const routes: Routes = [
     children: [
       { path: ':id', component: ServerComponent },
       { path: ':id/edit', component: EditServerComponent },
+    ],
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
+    children: [
+      // { path: '', component: ProductComponent },
+      { path: ':id', component: ProductDetailsComponent },
     ],
   },
   { path: 'not-found', component: PageNotFoundComponent },

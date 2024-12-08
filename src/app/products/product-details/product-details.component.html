@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bg-info border bg-primary-subtle p-4 rounded">
+        <h2>{{ product?.name }}</h2>
+        <p>{{ product?.description }}</p>
+        <p>Price: {{ product?.price | currency }}</p>
+        <button
+          class="btn btn-primary"
+          [routerLink]="['/products', product.id]"
+          [queryParams]="{ name: product.name, price: product.price }"
+          fragment="loading"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
